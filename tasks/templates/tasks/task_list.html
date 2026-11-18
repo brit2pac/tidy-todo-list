@@ -1,0 +1,15 @@
+{% extends 'tasks/base.html' %}
+{% block title %}My tasks{% endblock %}
+{% block content %}
+<header class="page-header"><div><div class="eyebrow">YOUR DAY, AT A GLANCE</div><h1>My tasks<span class="title-count">{{ tasks|length }}</span></h1><p class="subtitle">A little progress adds up.</p></div><a class="button primary" href="{% url 'task-add' %}"><span class="plus">＋</span> New task</a></header>
+<section class="task-board">
+  <div class="section-heading"><div><span class="status-dot open"></span><h2>To do</h2><span class="count">{{ open_tasks|length }}</span></div><span class="section-action">•••</span></div>
+  <div class="task-list">
+  {% for task in open_tasks %}
+    <article class="task-card"><form method="post" action="{% url 'task-toggle' task.pk %}">{% csrf_token %}<button class="check" title="Complete task" aria-label="Complete task"></button></form><div class="task-main"><div class="task-content">{{ task.content|linebreaksbr }}</div><div class="task-meta"><span>◷ {{ task.created_at|date:'M j, Y · H:i' }}</span>{% if task.deadline %}<span class="deadline">⚑ {{ task.deadline|date:'M j, Y · H:i' }}</span>{% endif %}{% for tag in task.tags.all %}<span class="tag-pill">{{ tag.name }}</span>{% endfor %}</div></div><div class="task-actions"><a href="{% url 'task-edit' task.pk %}">Edit</a><form method="post" action="{% url 'task-delete' task.pk %}" onsubmit="return confirm('Delete this task?')">{% csrf_token %}<button class="text-button danger" type="submit">Delete</button></form></div></article>
+  {% empty %}<div class="empty-state"><div class="empty-icon">✳</div><strong>Start with one small thing</strong><p>Add a task and make today count.</p><a href="{% url 'task-add' %}" class="button secondary">Create a task</a></div>{% endfor %}
+  {% if not tasks %}{% endif %}</div>
+  {% if done_tasks %}<div class="section-heading completed-heading"><div><span class="status-dot done"></span><h2>Completed</h2><span class="count">{{ done_tasks|length }}</span></div></div>
+  <div class="task-list done-list">{% for task in done_tasks %}<article class="task-card completed"><form method="post" action="{% url 'task-toggle' task.pk %}">{% csrf_token %}<button class="check checked" title="Undo" aria-label="Undo">✓</button></form><div class="task-main"><div class="task-content">{{ task.content|linebreaksbr }}</div><div class="task-meta"><span>◷ {{ task.created_at|date:'M j, Y · H:i' }}</span>{% if task.deadline %}<span class="deadline">⚑ {{ task.deadline|date:'M j, Y · H:i' }}</span>{% endif %}{% for tag in task.tags.all %}<span class="tag-pill">{{ tag.name }}</span>{% endfor %}</div></div><div class="task-actions"><a href="{% url 'task-edit' task.pk %}">Edit</a><form method="post" action="{% url 'task-delete' task.pk %}" onsubmit="return confirm('Delete this task?')">{% csrf_token %}<button class="text-button danger" type="submit">Delete</button></form></div></article>{% endfor %}</div>{% endif %}
+</section>
+{% endblock %}

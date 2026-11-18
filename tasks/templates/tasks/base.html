@@ -1,0 +1,23 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}Todo{% endblock %} · Tidy</title>
+  <link rel="stylesheet" href="{% static 'tasks/styles.css' %}">
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <a class="brand" href="{% url 'home' %}"><span class="brand-mark">✓</span><span>Tidy<span class="brand-dot">.</span><small>YOUR SPACE, IN ORDER</small></span></a>
+      <div class="nav-label">WORKSPACE</div>
+      <nav class="nav-links">
+        <a href="{% url 'home' %}" class="{% if request.path == '/' %}active{% endif %}"><span class="nav-icon">▦</span>My tasks</a>
+        <a href="{% url 'tag-list' %}" class="{% if '/tags/' in request.path %}active{% endif %}"><span class="nav-icon">⌑</span>Tags</a>
+      </nav>
+      <div class="sidebar-bottom"><div class="avatar">T</div><div><strong>Personal space</strong><small>Just for you</small></div><span class="dots">···</span></div>
+    </aside>
+    <main class="main">{% block content %}{% endblock %}<footer>Made for the things that matter <span>✳</span></footer></main>
+  </div>
+</body>
+</html>
