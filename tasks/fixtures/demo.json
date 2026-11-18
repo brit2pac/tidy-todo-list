@@ -1,0 +1,88 @@
+[
+{
+  "model": "tasks.tag",
+  "pk": 1,
+  "fields": {
+    "name": "work"
+  }
+},
+{
+  "model": "tasks.tag",
+  "pk": 2,
+  "fields": {
+    "name": "home"
+  }
+},
+{
+  "model": "tasks.tag",
+  "pk": 3,
+  "fields": {
+    "name": "shopping"
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 1,
+  "fields": {
+    "content": "Prepare slides for the product review",
+    "created_at": "2026-11-09T08:13:55.278Z",
+    "deadline": "2026-11-11T08:13:55.278Z",
+    "is_done": false,
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 2,
+  "fields": {
+    "content": "Pick up groceries for dinner",
+    "created_at": "2026-11-09T07:13:55.278Z",
+    "deadline": "2026-11-10T08:13:55.278Z",
+    "is_done": false,
+    "tags": [
+      3
+    ]
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 3,
+  "fields": {
+    "content": "Book a dentist appointment",
+    "created_at": "2026-11-09T06:13:55.278Z",
+    "deadline": "2026-11-13T08:13:55.278Z",
+    "is_done": false,
+    "tags": [
+      2
+    ]
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 4,
+  "fields": {
+    "content": "Send the project update",
+    "created_at": "2026-11-09T05:13:55.278Z",
+    "deadline": null,
+    "is_done": true,
+    "tags": [
+      1
+    ]
+  }
+},
+{
+  "model": "tasks.task",
+  "pk": 5,
+  "fields": {
+    "content": "Water the plants",
+    "created_at": "2026-11-09T04:13:55.278Z",
+    "deadline": null,
+    "is_done": true,
+    "tags": [
+      2
+    ]
+  }
+}
+]
